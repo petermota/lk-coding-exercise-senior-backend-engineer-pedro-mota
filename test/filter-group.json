@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "name": "Power Sink",
+    "colors": [
+      "Red"
+    ],
+    "rarity": "Common",
+    "set": "PTC",
+    "setName": "Pro Tour Collector Set"
+  },
+  {
+    "id": "2",
+    "name": "Fountain of Youth",
+    "colors": [
+      "Red",
+      "Blue"
+    ],
+    "rarity": "Rare",
+    "set": "PTC",
+    "setName": "Pro Tour Collector Set"
+  },
+  {
+    "id": "3",
+    "name": "Wetland Sambar",
+    "colors": [
+      "Blue"
+    ],
+    "rarity": "Rare",
+    "set": "KTK",
+    "setName": "Khans of Tarkir"
+  },
+  {
+    "id": "4",
+    "name": "Whirlwind Adept",
+    "colors": [
+      "Red",
+      "Blue"
+    ],
+    "rarity": "Mythic",
+    "set": "KTK",
+    "setName": "Khans of Tarkir"
+  },
+  {
+    "id": "5",
+    "name": "Roil Eruption",
+    "colors": [
+      "White"
+    ],
+    "rarity": "Common",
+    "set": "ZNR",
+    "setName": "Zendikar Rising"
+  },
+  {
+    "id": "6",
+    "name": "Roiling Regrowth",
+    "colors": [
+      "Red",
+      "Blue"
+    ],
+    "rarity": "Rare",
+    "set": "ZNR",
+    "setName": "Zendikar Rising"
+  },
+  {
+    "id": "7",
+    "name": "Kargan Warleader",
+    "colors": [
+      "Red",
+      "Blue",
+      "White"
+    ],
+    "rarity": "Rare",
+    "set": "ZNR",
+    "setName": "Zendikar Rising"
+  }
+]

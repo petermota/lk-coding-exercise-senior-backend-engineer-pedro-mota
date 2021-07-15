@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "id": "1",
+      "name": "Master the Way",
+      "colors": [
+        "Red",
+        "Blue"
+      ],
+      "rarity": "Uncommon",
+      "set": "KTK"
+    },
+    {
+      "id": "2",
+      "name": "Mindswipe",
+      "colors": [
+        "Red",
+        "Blue"
+      ],
+      "rarity": "Rare",
+      "set": "KTK"
+    },
+    {
+      "id": "3",
+      "name": "Winterflame",
+      "colors": [
+        "Red",
+        "Blue"
+      ],
+      "rarity": "Uncommon",
+      "set": "KTK"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Exclude IntelliJ files and directories
+.idea/
+*.iml
+
+# Exclude binaries
+target/
