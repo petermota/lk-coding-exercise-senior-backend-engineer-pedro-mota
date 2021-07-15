@@ -274,7 +274,7 @@ The content of the file will be (notice there are no messages);
 } ]
 ```
 
-Now let's try to group the cards from the **Khans of Tarkir (KTK)** set by rarity having ONLY red and blue colors:
+Now let's try to show the cards from the **Khans of Tarkir (KTK)** set having ONLY red and blue colors:
 
 ```bash
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk colors=red,blue --pretty
