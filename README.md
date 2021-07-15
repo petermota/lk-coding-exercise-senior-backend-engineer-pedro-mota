@@ -59,15 +59,14 @@ Initially I thought about a dependency injection framework like Spring Boot, Mic
 
 These were my technical decisions and why I took them:
 
-- Use Picocli. It's a quite good library to create CLI commands like any Unix command we are used to.
-- I took this as a guideline to create a good CLI: https://clig.dev/#guidelines  
-- Testing Libraries. I have used JUnit and Mockito. I have used them a lot of times, and they are powerful and easy to use. I have also used Wiremock to simulate a web server.
+- Use Picocli. It's a quite good library to create CLI commands like any Unix command we are used to. I took this as a guideline to create a good CLI: https://clig.dev/#guidelines  
+- Testing Libraries. I have used JUnit and Mockito. I have used them a lot of times, and they are powerful and easy to use. I have also used Wiremock to simulate a web server and test HttpServiceImpl.
 - Lombok. When I write a POJO I don't want to write getters, setters, constructors, toString methods, etc. With Lombok and few annotations you get the same result, and the final class is easier to read and understand.
 - Jackson JSON serializer/deserializer. I have used a lot of times when creating Spring Boot Microservices, so I am used to it.
 
 ## Compiling
 
-A JDK 8 or newer is required to compile this application. Maven should also be installed. After cloning the project, this Maven command will compile, run the unit tests and create 2 shell scripts for Windows and Unix systems (Linux, Mac OS):
+A JDK 8 or newer is required to compile this application. Maven should also be installed. After cloning the project, this Maven command will compile, run the unit tests and create 2 shell scripts for Windows and Unix systems (Linux and MacOS systems):
 
 ```bash
 mvn clean package appassembler:assemble
@@ -115,7 +114,7 @@ Query, Filter and Group CLI for 'Magic The Gathering' cards.
   -V, --version              Print version information and exit.
 ```
 
-Getting all the cards. Just use the command with any extra parameters. All the cards will start to be downloaded from the API. Take it easy, it will take several minutes. **You can skip this step decompressing and moving the file named 'mtg_cards.zip' in the test directory to $HOME/mtg_cards.json.**
+Getting all the cards. Just use the command without any extra parameters. All the cards will start to be downloaded from the API. Take it easy, it will take several minutes. **You can skip this step decompressing and moving the file named 'mtg_cards.zip' in the test directory to $HOME/mtg_cards.json.**
 
 ```bash
 $ ./target/appassembler/bin/mtg
@@ -154,7 +153,7 @@ Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
 } ]
 ```
 
-Here we have used several features: show only certain fields with --properties option, pretty print the output so it is more user readable with --pretty and 2 filters. Filters, groups and queries are not case-sensitive. We can make more complex queries:
+Here we have used several features: show only certain fields with --properties option, pretty print the output so it is more user readable with --pretty and 2 filters. **Filters, groups and queries are not case-sensitive**. We can make more complex queries:
 
 ```bash
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk,znr colors=blue rarity=mythic --pretty
