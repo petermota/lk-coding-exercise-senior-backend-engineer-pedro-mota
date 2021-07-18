@@ -75,7 +75,7 @@ public class HTTPServiceImplTest {
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBody(emptyResult)
-                        .withFixedDelay(12000)));
+                        .withFixedDelay(6000)));
         httpService.doGet(url);
     }
 

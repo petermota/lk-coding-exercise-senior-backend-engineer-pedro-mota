@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.lingokids.mtg.services.PrinterService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -27,7 +29,7 @@ public class PrinterServiceImpl implements PrinterService {
     }
 
     @Override
-    public String print(Object input, Set<String> properties, boolean pretty) throws JsonProcessingException {
+    public String print(Object input, Set<String> properties, String filename, boolean pretty) throws IOException {
         SimpleBeanPropertyFilter filter;
         if (properties != null && !properties.isEmpty()) {
             filter = SimpleBeanPropertyFilter.filterOutAllExcept(properties);
@@ -43,7 +45,12 @@ public class PrinterServiceImpl implements PrinterService {
         }
 
         String jsonString = writer.writeValueAsString(input);
-        System.out.println(jsonString);
+
+        if (filename != null && !filename.trim().isEmpty()) {
+            writer.writeValue(new File(filename), input);
+        } else {
+            System.out.println(jsonString);
+        }
 
         return jsonString;
     }

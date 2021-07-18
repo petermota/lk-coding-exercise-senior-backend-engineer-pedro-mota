@@ -2,6 +2,7 @@ package com.lingokids.mtg.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -11,5 +12,5 @@ import java.util.Set;
  *
  */
 public interface PrinterService {
-    String print(Object input, Set<String> properties, boolean pretty) throws JsonProcessingException;
+    String print(Object input, Set<String> properties, String filename, boolean pretty) throws IOException;
 }

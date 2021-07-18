@@ -54,6 +54,10 @@ public class MagicTheGathering implements Callable<Integer> {
             description = "Uses the provided url instead of the standard one https://api.magicthegathering.io/v1/cards")
     private String url;
 
+    @Option(names = {"-o", "--output"},
+    description = "Outputs the result to a JSON files")
+    private String filename;
+
     @Parameters(description = {"Filters in the form of field1=value1 field2=value2...fieldN=valueN",
             "If not filters are specified then all cards are returned"})
     private Map<String, String> filters;
@@ -94,7 +98,7 @@ public class MagicTheGathering implements Callable<Integer> {
         List<Card> cards = cardLoaderService.getCards(url, refresh);
         cards = filterService.filter(cards, filters);
         Object result = groupingService.groupBy(cards, groupBy);
-        printerService.print(result, properties, pretty);
+        printerService.print(result, properties, filename, pretty);
 
         return 0;
     }

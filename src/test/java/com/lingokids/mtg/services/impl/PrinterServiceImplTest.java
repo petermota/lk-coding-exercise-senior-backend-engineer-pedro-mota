@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,10 +34,10 @@ public class PrinterServiceImplTest {
     }
 
     @Test
-    public void shouldPrintListOfCards() throws JsonProcessingException {
+    public void shouldPrintListOfCards() throws IOException {
         List<Card> cards = createNewListOfCards();
 
-        String result = printerService.print(cards, null, true);
+        String result = printerService.print(cards, null, null,true);
 
         List<Card> printedCards = objectMapper.readValue(result, new TypeReference<List<Card>>() {
         });
@@ -48,12 +50,12 @@ public class PrinterServiceImplTest {
     }
 
     @Test
-    public void shouldPrintListOfCardsOnlyWithSelectedFields() throws JsonProcessingException {
+    public void shouldPrintListOfCardsOnlyWithSelectedFields() throws IOException {
         List<Card> cards = createNewListOfCards();
         Set<String> fieldsToBePrinted = new HashSet<>();
         fieldsToBePrinted.add("id");
 
-        String result = printerService.print(cards, fieldsToBePrinted, true);
+        String result = printerService.print(cards, fieldsToBePrinted, null,true);
 
         List<Card> printedCards = objectMapper.readValue(result, new TypeReference<List<Card>>() {
         });
@@ -63,6 +65,22 @@ public class PrinterServiceImplTest {
         assertEquals("1", printedCards.get(0).getId());
         assertNull(printedCards.get(0).getSet());
         assertNull(printedCards.get(0).getRarity());
+    }
+
+    @Test
+    public void shouldSaveToFile() throws IOException {
+        List<Card> cards = createNewListOfCards();
+
+        printerService.print(cards, null, "test.json",true);
+
+        List<Card> cardsInFile = objectMapper.readValue(new File("test.json"), new TypeReference<List<Card>>() {
+        });
+
+        assertNotNull(cardsInFile);
+        assertEquals(1,cardsInFile.size());
+        assertEquals("1", cardsInFile.get(0).getId());
+        assertEquals("KTK", cardsInFile.get(0).getSet());
+        assertNull(cardsInFile.get(0).getRarity());
     }
 
     private List<Card> createNewListOfCards() {

@@ -68,7 +68,7 @@ These were my technical decisions and why I took them:
 
 A JDK 8 or newer is required to compile this application. Maven should also be installed. After cloning the project, this Maven command will compile, run the unit tests and create 2 shell scripts for Windows and Unix systems (Linux and MacOS systems):
 
-```bash
+```sh
 mvn clean package appassembler:assemble
 ```
 
@@ -78,19 +78,19 @@ Having built the application we can start using the CLI.
 
 On Windows we can get help if we write this command:
 
-```bash
+```sh
 target\appassembler\bin\mtg.bat --help
 ```
 
 On Unix systems:
 
-```bash
+```sh
 ./target/appassembler/bin/mtg --help
 ```
 
 We will see an output like this:
 
-```bash
+```sh
 Usage: mtg [-hrV] [--pretty] [-u=<url>] [-g=<groupBy>[,<groupBy>...]]...
            [-p=<properties>[,<properties>...]]... [<String=String>...]
 Query, Filter and Group CLI for 'Magic The Gathering' cards.
@@ -116,7 +116,7 @@ Query, Filter and Group CLI for 'Magic The Gathering' cards.
 
 Getting all the cards. Just use the command without any extra parameters. All the cards will start to be downloaded from the API. Take it easy, it will take several minutes. **You can skip this step decompressing and moving the file named 'mtg_cards.zip' in the test directory to $HOME/mtg_cards.json.**
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg
 Retrieving cards from API https://api.magicthegathering.io/v1/cards
 1000 cards retrieved
@@ -127,7 +127,7 @@ Retrieving cards from API https://api.magicthegathering.io/v1/cards
 
 You will see all the cards output to the terminal. Now a file named 'mtg_cards.json' will appear in your $HOME directory. We can start querying, filtering, grouping and without the need to download all the cards from the API again:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk colors=red,blue --pretty
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
@@ -155,7 +155,7 @@ Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
 
 Here we have used several features: show only certain fields with --properties option, pretty print the output so it is more user readable with --pretty and 2 filters. **Filters, groups and queries are not case-sensitive**. We can make more complex queries:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk,znr colors=blue rarity=mythic --pretty
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {set=ktk,znr, colors=blue, rarity=mythic} to 58169 cards.
@@ -213,7 +213,7 @@ Applying filters = {set=ktk,znr, colors=blue, rarity=mythic} to 58169 cards.
 
 All messages from the application will be redirected to stderr, so they will not appear if we redirect the output to a file:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk,znr colors=blue rarity=mythic --pretty > result.json
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {set=ktk,znr, colors=blue, rarity=mythic} to 58169 cards.
@@ -222,7 +222,7 @@ Applying filters = {set=ktk,znr, colors=blue, rarity=mythic} to 58169 cards.
 
 The content of the file will be (notice there are no messages);
 
-```bash
+```sh
 [ {
   "id" : "e502db19-a246-5e79-ab37-640acc996e03",
   "name" : "Clever Impersonator",
@@ -274,9 +274,18 @@ The content of the file will be (notice there are no messages);
 } ]
 ```
 
+We can output to a file instead of stdout (and that will solve the problem representing UTF-8 international characters):
+
+```sh
+$ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk,znr colors=blue rarity=mythic --pretty -o result.json
+Reading cards from file C:\Users\peter\mtg_cards.json
+Applying filters = {set=ktk,znr, colors=blue, rarity=mythic} to 58169 cards.
+8 cards after filtering.
+```
+
 Now let's try to show the cards from the **Khans of Tarkir (KTK)** set having ONLY red and blue colors:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk colors=red,blue --pretty
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
@@ -304,7 +313,7 @@ Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
 
 The same grouped by rarity:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors set=ktk colors=red,blue --group=rarity --pretty
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
@@ -335,7 +344,7 @@ Applying filters = {set=ktk, colors=red,blue} to 58169 cards.
 
 Now all the cards grouped by rarity and then by set having ONLY red and blue colors:
 
-```bash
+```sh
 $ ./target/appassembler/bin/mtg --properties=id,name,set,rarity,colors --group=rarity,set --pretty colors=red,blue
 Reading cards from file C:\Users\peter\mtg_cards.json
 Applying filters = {colors=red,blue} to 58169 cards.
@@ -398,10 +407,9 @@ output omitted
 - Speed when making HTTP requests through connection reuse, connection pooling, etc.
 - Use GraalVM to create a native executable binary. Better startup time and less memory used at runtime. I decided not to do it because it would make more difficult to build the executable. In a production environment it would be nice to have.  
 - Better management of queries involving numbers. Right now 1 != 1.0
-- Output to stdout looses UTF-8 encoding. International characters will be shown as '?'. This problem will be solved doing the output to a file instead of stdout.
 
 ## Time to develop this CLI
 
 At the end I liked a lot this challenge, so I designed with this in mind: "do a tool that I would like to use myself". So I wanted to filter and group by any field. Also I wanted a fast cli command, so I cached the response from the API in a local file, etc.
 
-It took me a little more than 10 hours in total.
+It took me more or less 10 hours in total.

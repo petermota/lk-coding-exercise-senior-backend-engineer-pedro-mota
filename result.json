@@ -1,0 +1,49 @@
+[ {
+  "id" : "e502db19-a246-5e79-ab37-640acc996e03",
+  "name" : "Clever Impersonator",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "KTK"
+}, {
+  "id" : "05f453ea-19e7-5ca7-8cd3-04da14190ec9",
+  "name" : "Pearl Lake Ancient",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "KTK"
+}, {
+  "id" : "19914d4f-3f02-5050-a11e-c1c72acda20d",
+  "name" : "Jace, Mirror Mage",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+}, {
+  "id" : "302d4e22-af48-562b-86f3-182b142969f2",
+  "name" : "Sea Gate Restoration // Sea Gate, Reborn",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+}, {
+  "id" : "413aadac-d2ed-5f73-9331-051e0d7605ee",
+  "name" : "Sea Gate Stormcaller",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+}, {
+  "id" : "1e6cfbf9-83b7-5999-a544-d2b78b9f1a30",
+  "name" : "Jace, Mirror Mage",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+}, {
+  "id" : "445127ae-b2dd-5346-b98d-f894a11dcba6",
+  "name" : "Sea Gate Restoration // Sea Gate, Reborn",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+}, {
+  "id" : "a83f7191-b210-53af-82ff-1d5cf763d999",
+  "name" : "Sea Gate Stormcaller",
+  "colors" : [ "Blue" ],
+  "rarity" : "Mythic",
+  "set" : "ZNR"
+} ]
